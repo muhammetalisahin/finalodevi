@@ -1,0 +1,219 @@
+---
+title: "Nobel Ödülü"
+author: 
+  - Muhammet Ali Şahin[^1]
+bibliography: ../bibliography/biblio.bib
+csl: ../csl/apa-tr.csl
+header-includes:
+  - \usepackage{polyglossia}
+  - \setmainlanguage{turkish}
+  - \usepackage{booktabs}
+  - \usepackage{caption} 
+  - \captionsetup[table]{skip=10pt}
+output:
+  bookdown::pdf_document2:
+    fig_caption: yes
+    fig_height: 3
+    fig_width: 4
+    keep_tex: no
+    latex_engine: xelatex
+    number_sections: yes
+    toc: no
+geometry: margin=1in
+link-citations: yes
+urlcolor: blue
+fontsize: 12pt
+biblio-style: apalike
+abstract: |
+  Nobel Ödülü, dünyanın en prestijli ödüllerinden biri olarak kabul edilmekte olup birçok farklı alanda (Fizik, kimya, tıp, edebiyat, ekonomi…) üstün başarı göstermiş kişilere verilmektedir. İlk kez 1901 yılında verilmeye başlanan bu ödül 1969 yılına kadar barış, edebiyat ve temel bilimlere sonrasında ise ekonomi alanına da verilmeye başlanmıştır. Ödülü alanlar arasında Albert Einstein gibi birçok bilim adamı ve düşünür bulunmaktadır. Nobel Ödülü kazanan kişiler arasında birçok farklılık vardır. En temel farklılıklardan bir tanesi cinsiyet konusudur. Bunun dışında cinsiyet faktörünün yıllara göre değişimi de dikkat çekici hususlardan biridir. Aynı şekilde hangi ülkede doğdukları, hangi üniversitede eğitim aldıkları, yaşları da diğer bazı değişkenlerdir. Kullanacağımız veri setinde 1901-2016 yılları arasındaki ödül sahiplerinin bilgileri bulunmaktadır. Regresyon analizi ile değişkenler arasında bağlantı kurulamaya çalışılıp aynı zamanda farklılar veya benzerlikler çeşitli grafiklerle desteklenecektir. Bu çalışmada “Nobel Ödülü kazanan kişileri etkileyen faktörler ve yıllar içerisinde bu faktörlerde meydana gelen değişiklikler nelerdir?” sorusu üzerinde durulacaktır.
+
+---
+```{r, include=FALSE}
+library(readr)
+library(here)
+nobel_winners <- read_csv(here("../data/nobel_winners.csv"))
+
+library(data.table)
+library(dplyr)
+library(ggplot2)
+library(stargazer)
+
+
+setDT(nobel_winners)
+a <- as.numeric(count(nobel_winners[gender == "Female"]))
+b <- as.numeric(count(nobel_winners[gender == "Male"]))
+
+data <- data.table(Gender = c("Male", "Female"),
+                   Numbers=  c(b,a))
+
+
+gr2<- ggplot(data, aes(x = Gender, y = Numbers, colour = Gender, fill =Gender)) +
+  geom_col()+theme_bw()+scale_y_continuous(breaks=c(c(50,893),(c(1:4)*200)))
+
+nobel_winners$number <- 0
+nobel_winners[gender=="Female"]$number <- 1
+data1 <- data.table(year = nobel_winners$prize_year,
+                    gender=nobel_winners$number)
+
+
+xx <- function(ii){a <- sum(data1[year == unique(nobel_winners$prize_year)[ii]]$gender)
+b <- unique(nobel_winners$prize_year)[ii]
+c <- data.table(year = b,
+                `Number of Female Winner` = a)
+return(c)}
+dt <- xx(1)
+for (ii in c(2:113)) {dt <- rbind(dt, xx(ii)) }
+
+
+ccc <- function(ii){sum(dt[c(1:ii)]$`Number of Female Winner`)}
+
+
+for (ii in c(1:113)) {dt$`Total Number of Female Winners`[ii] <- ccc(ii) }
+
+
+gr3<- ggplot(dt, aes(year, `Total Number of Female Winners`)) + geom_line()+theme_bw()
+
+nobel_winners$numbermale <- 0
+nobel_winners[gender=="Male"]$numbermale <- 1
+data2 <- data.table(year = nobel_winners$prize_year,
+                    gender=nobel_winners$numbermale)
+
+
+xxm <- function(ii){a <- sum(data2[year == unique(nobel_winners$prize_year)[ii]]$gender)
+b <- unique(nobel_winners$prize_year)[ii]
+c <- data.table(year = b,
+                `Number of Male Winner` = a)
+return(c)}
+dtm <- xxm(1)
+for (ii in c(2:113)) {dtm <- rbind(dtm, xxm(ii)) }
+
+
+ccc <- function(ii){sum(dtm[c(1:ii)]$`Number of Male Winner`)}
+
+
+for (ii in c(1:113)) {dtm$`Total Number of Male Winners`[ii] <- ccc(ii) }
+
+
+gr4<- ggplot(dtm, aes(year, `Total Number of Male Winners`)) + geom_line()+theme_bw()
+
+cc <- function(ii){NROW(nobel_winners[prize_year==1900+ii])}
+setkey(dtm, year)
+setkey(dt, year)
+dt1 <- merge(dt, dtm)
+
+for (ii in c(1:113)) {dt1$`Number of Nobels`[ii] <- cc(ii)}
+
+aa <- function(ii){sum(dt1[c(1:ii)]$`Number of Nobels`)}
+
+
+for (ii in c(1:113)) {dt1$`Total Number of Nobels`[ii] <- aa(ii) }
+
+
+cor(dt1$`Number of Nobels`, dt1$`Total Number of Male Winners`)
+cor(dt1$`Number of Nobels`, dt1$`Total Number of Female Winners`)
+
+
+z <- lm(data = dt1, `Number of Female Winner` ~ `Number of Nobels`)
+stargazer(z, type = "text", title="Nobel", digits=1, out="table.txt")
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache = FALSE, echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+<!-- ======================================================================= -->
+<!-- ============================== NOTLAR ================================= -->
+<!-- ======================================================================= -->
+[^1]: 19080242, [Github Repo](https://github.com/muhammetalisahin/finalodevi.git)
+
+
+
+
+# Giriş
+Nobel Ödülleri, İsveç Kraliyet Bilimler Akademisi, İsveç Akademisi, Karolinska Enstitüsü ve Norveç Nobel Komitesi tarafından kişiler veya kuruluşlara fizik, kimya, edebiyat, barış ve Fizyoloji veya Tıp alanlarındaki olağanüstü başarılarına verilmektedir. 1895 yılındaki Alfred Nobel'in vasiyeti doğrultusunda, 1896 yılından bu yana Nobel Vakfı tarafından idare edilmekte ve yürütülmektedir. Ekonomi dalında verilen bir başka ödül ise 1968 yılında Sveriges Riksbank ile Merkez bankasının İsveç ekonomisine yapmış olduğu katkılar nedeniyle verilmeye başlanmıştır.
+Çalışmamızda ise Nobel Ödülü kazanan kişileri kapsayacak şekilde TidyTuesday web sitesinden “nobel_prize” adlı veri seti çekilmiş olup ödülü kazanan kişilerin doğum tarihi, cinsiyeti, kategorisi, ödül yılı gibi değişkenler bulunmaktadır. 
+
+## Çalışmanın Amacı
+Veri setinde 1900’den 2016’ya kadar fizik, kimya ve diğer alanlarda alınan Nobel ödüllerinin
+kayıtları bulunmaktadır. Çalışmanın amacı bu kayıtlara göre Nobel Ödülü kazanan kişilerin
+ortak veya farklı özellikleri olacaktır. (Yaş, cinsiyet, ülke …)
+
+
+## Literatür 
+Nobel Ödülünü kazanan kişilerde birçok ortak nokta bulunmaktadır. Bu noktalardan belki de en önemlisi cinsiyet faktörüdür, sekiz yüzden fazla erkek ödülü kazanırken kadınlarda ise bu rakam sadece elli kişidir (@mcgrayne1993nobel). Diğer taraftan ekonomi kategorisinde ödül alan bilim adamlarının çoğunun gelişmiş ülkelerden olduğu görülmektedir (@ozatecsler1998nobel). 
+ Ödülü kazananların yaş ortalamaları da dikkat çekicidir, @stephan1993age’e göre 1901–1992 döneminde Nobel ödülü kazananlar için yaş ve üretkenlik arasındaki ilişki analiz edildiğinde, kazanan kişiler için genç yaşta daha çok; orta yaşlara doğru azalan; özellikle kimya ve fizikte 50 yaşından sonra aniden düştüğü gözlemlenmiştir. Ülkerler bazında bir inceleme yapıldığında Dünya nüfusunun beşte birini oluşturan Çin’in Nobel kazanmadığı görülmüştür (@cao2004chinese). Farklı bir başlık olarak Nobel Ödülü kazananların çalışmalarını hangi kurumda yaptıklarıdır. Özellikle UC Berkeley, Columbia Üniversitesi ve Massachusetts Teknoloji Enstitüsü (MIT) ödül kazananlarının aldıkları eğitim kurumları olarak öncüdürler (@schlagberger2016institutions). Yine ekonomi alanında @chan2018relation’e göre Nobel ödülü almadan önceki genç yaştaki  tanınırlıkları ve aldığı ödüller bakamından nasıl benzerlikler bulunduğu da ortak noktalar arasındadır.
+
+# Veri 
+Nobel Ödülü kazanan kişileri kapsayacak şekilde TidyTuesday web sitesinden “nobel_prize”
+adlı veri seti çekilmiş olup ödülü kazanan kişilerin doğum tarihi, cinsiyeti, kategorisi, ödül yılı
+gibi değişkenler bulunmaktadır(969 gözlem, 18 değişken). (Tablo \ref{tab:ozet}) 'e baktığımızda Ödül, ilk kez 1901 yılında verilmiştir. Veri setimizin kapsamı 2016 yılına kadardır. 
+
+```{r, echo=FALSE}
+library(tidyverse)
+library(here)
+```
+
+
+
+```{r, echo=FALSE}
+library(xtable) 
+# devtools::install_github("emraher/summarytools")
+library(summarytools)
+st_options(lang = "tr")
+```
+
+
+
+```{r results='asis', echo=FALSE}
+nobel_winners %>%
+  select("category", "gender", "organization_name", "gender", "prize_year") %>% 
+  descr(stats = c("mean", "sd", "min", "med", "max"), transpose = TRUE) %>% 
+  xtable(caption = "Özet İstatistikler",
+         label = "tab:ozet",
+         align = c("l", "c", "c", "c", "c", "c")) %>% 
+  print(booktabs = TRUE, comment = FALSE, caption.placement = "top")
+```
+
+
+# Yöntem ve Veri Analizi
+@mcgrayne1993nobel'e göre kadınların almış oldukları ödül sayısı erkeklere göre bir hayli geride kalmıştır. İlgili veriyi kullanarak regresyon analizi gerçekleştirdiğimizde her geçen yıl Nobel Ödülü alan kadın sayısının 0.1 oranında bir önceki yıla göre artmış olduğunu aşağıdaki regresyon analizinde görmekteyiz. Bu durum kümülatif olarak kadınların ödül alma ihtimallerinin yıllar geçtikçe arttığını göstermektedir. 
+
+```{r, echo=FALSE}
+stargazer(z, type = "text", title="Descriptive statistics", digits=1, out="table1.txt")
+```
+
+
+
+
+
+Aşağıdaki cinsiyet grafiğini incelediğimize 1901-2016 yılları arasında 893 erkek, 50 kadın Nobel ödülü almıştır.
+Diğer erkek ve kadınların aldıkları ödüllerin yıllar içersindeki değişimini gösteren grafiklere baktığımızda erkekler yıllar içerisinde görece istikrarlı bir şekilde Nobel ödülü almaya devam etmiştir. Kadınlarda ise durum 1901- 1925 yılları arasında sadece 4 kişi ile sınırlı iken 2000-2016 yılları arasında bu rakam 5 katlık bir artış sonucu 20 olmuştur. 1925-2000 yılları arasında 75 yılda kadınların toplamda sadece 26 ödül aldığı görülmektedir.
+
+```{r, echo=FALSE}
+gr2
+```
+
+
+
+
+```{r, echo=FALSE}
+gr4
+```
+
+
+
+
+
+```{r, echo=FALSE}
+gr3
+```
+
+# Sonuç
+
+Yapmış olduğumuz analizler ve çeşitli makalelerden derlediğimiz bilgiler ışığında Nobel Ödülü sahipleri arasında benzeşen ve farklılaşan birçok özellik olduğunu gördük. Sonuç olarak kadınların görece daha az ödül almaları ve yıllar içerisindeki değişimi dikkat çeken bir farklılık olarak yer aldı. Aynı zamanda nüfus bakımından büyüklüğün ödül kazanmada cazip bir etkisinin olmadağı, yaş ve üretkenlik arasında azımsanmayacak bir korelasyon olduğunu, eğitim alınan kurumların önemini incelemiş olduğumuz kaynak taraması sonucunda tespit ettik.
+
+\newpage
+# Kaynakça {#references}
+<div id="refs"></div>
+
+

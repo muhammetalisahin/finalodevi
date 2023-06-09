@@ -1,0 +1,62 @@
+---
+title: "Nobel Ödülü"
+author: 
+  - Muhammet Ali Şahin[^1]
+bibliography: ../bibliography/biblio.bib
+csl: ../csl/apa-tr.csl
+header-includes:
+  - \usepackage{polyglossia}
+  - \setmainlanguage{turkish}
+  - \usepackage{booktabs}
+  - \usepackage{caption} 
+  - \captionsetup[table]{skip=10pt}
+output:
+  bookdown::pdf_document2:
+    fig_caption: yes
+    fig_height: 3
+    fig_width: 4
+    keep_tex: no
+    latex_engine: xelatex
+    number_sections: yes
+    toc: no
+geometry: margin=1in
+link-citations: yes
+urlcolor: blue
+fontsize: 12pt
+biblio-style: apalike
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache = FALSE, echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+<!-- ======================================================================= -->
+<!-- ============================== NOTLAR ================================= -->
+<!-- ======================================================================= -->
+[^1]: 19080242, [Github Repo](https://github.com/muhammetalisahin/Muhammet.git)
+
+
+# Giriş
+Nobel Ödülü kazanan kişileri kapsayacak şekilde TidyTuesday web sitesinden “nobel_prize”
+adlı veri seti çekilmiş olup ödülü kazanan kişilerin doğum tarihi, cinsiyeti, kategorisi, ödül yılı
+gibi değişkenler bulunmaktadır. Analiz itibariyle “Nobel Ödülü kazanan kişilerin etkilendiği
+etmenler nelerdir ?” sorusu üzerinde durulacaktır. 
+ 
+
+
+
+## Çalışmanın Amacı
+Veri setinde 1900’den 2016’ya kadar fizik, kimya ve diğer alanlarda alınan Nobel ödüllerinin
+kayıtları bulunmaktadır. Çalışmanın amacı bu kayıtlara göre Nobel Ödülü kazanan kişilerin
+ortak özellikleri olacaktır. (Yaş, cinsiyet, ülke …)
+
+## Literatür 
+Nobel Ödülünü kazanan kişilerde birçok ortak nokta bulunmaktadır. Bu noktalardan belki de en önemlisi cinsiyet faktörüdür, dört yüzden fazla erkek ödülü kazanırken kadınlarda ise bu rakam sadece dokuz kişidir.(@mcgrayne1993nobel) Diğer taraftan ekonomi kategorisinde ödül alan bilimadamlarının çoğunun gelişmiş ülkelerden olduğu görülmektedir. (@ozatecsler1998nobel) 
+Ödülü kazananların yaş ortalamaları da dikkat çekicidir, @stephan1993age’e göre 1901–1992 döneminde Nobel ödülü kazananlar için yaş ve üretkenlik arasındaki ilişki analiz edildiğinde, kazanan kişiler için genç yaşta daha çok; orta yaşlara doğru azalan; özellikle kimya ve fizikte 50 yaşından sonra aniden düştüğü gözlemlenmiştir. Ülkerler bazında bir inceleme yapıldığında Dünya nüfusunun beşte birini oluşturan Çin’in Nobel kazanmadığı görülmüştür. (@cao2004chinese)
+Farklı bir başlık olarak Nobel Ödülü kazananların çalışmalarını hangi kurumda yaptıklarıdır. (@schlagberger2016institutions). Yine ekonomi alanında @chan2018relation’e göre Nobel ödülü almadan önceki genç yaştaki  tanınırlıkları ve aldığı ödüller bakamından nasıl benzerlikler bulunduğu da ortak noktalar arasındadır.
+
+
+
+\newpage
+# Kaynakça {#references}
+<div id="refs"></div>
+

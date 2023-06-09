@@ -1,0 +1,265 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames*,x11names*}{xcolor}
+%
+\documentclass[
+  12pt,
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Nobel Ödülü},
+  pdfauthor={Muhammet Ali Şahin},
+  colorlinks=true,
+  linkcolor=Maroon,
+  filecolor=Maroon,
+  citecolor=Blue,
+  urlcolor=blue,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs}
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{polyglossia}
+\setmainlanguage{turkish}
+\usepackage{booktabs}
+\usepackage{caption}
+\captionsetup[table]{skip=10pt}
+
+\title{Nobel Ödülü}
+\author{Muhammet Ali Şahin\footnote{19080242, \href{https://github.com/muhammetalisahin/Muhammet.git}{Github Repo}}}
+\date{}
+
+\begin{document}
+\maketitle
+
+\hypertarget{giriux15f}{%
+\section{Giriş}\label{giriux15f}}
+
+Nobel Ödülü, dünyanın en prestijli ödüllerinden biri ve birçok farklı alanda üstün başarı göstermiş bireylere veya kuruluşlara verilir. Nobel Ödülleri, İsveçli milyarder, mucit ve sanayici Alfred Nobel'in vasiyeti 1901 yılından beri verilmektedir.
+
+Nobel Ödülü, her yıl Stockholm, İsveç'te düzenlenen ayrı törenlerle verilir. Fizik, kimya, tıp veya fizyoloji kullanıcılarının sağladığı ödüller, İsveç Kraliyet Bilimler Akademisi tarafından seçilen komiteler tarafından elde edilebilir. Edebiyat ödülü, İsveç Akademisi tarafından, barış ödülü ise Norveç Nobel Komitesi tarafından seçilen kişilere veya kurumlara verilir. Ekonomi alanındaki mükafat ise İsveç Kraliyet Bilimler Akademisi tarafından verilmiştir.
+
+Bu çalışamada Nobel Ödülü kazanan kişileri kapsayacak şekilde TidyTuesday web sitesinden ``nobel\_prize''
+adlı veri seti çekilmiş olup ödülü kazanan kişilerin doğum tarihi, cinsiyeti, kategorisi, ödül yılı
+gibi değişkenler bulunmaktadır. Analiz itibariyle ``Nobel Ödülü kazanan kişilerin etkilendiği
+etmenler nelerdir ?'' sorusu üzerinde durulacaktır.
+
+\hypertarget{uxe7alux131ux15fmanux131n-amacux131}{%
+\subsection{Çalışmanın Amacı}\label{uxe7alux131ux15fmanux131n-amacux131}}
+
+Veri setinde 1900'den 2016'ya kadar fizik, kimya ve diğer alanlarda alınan Nobel ödüllerinin
+kayıtları bulunmaktadır. Çalışmanın amacı bu kayıtlara göre Nobel Ödülü kazanan kişilerin
+ortak özellikleri olacaktır. (Yaş, cinsiyet, ülke \ldots)
+
+\hypertarget{literatuxfcr}{%
+\subsection{Literatür}\label{literatuxfcr}}
+
+Nobel Ödülünü kazanan kişilerde birçok ortak nokta bulunmaktadır. Bu noktalardan belki de en önemlisi cinsiyet faktörüdür, dört yüzden fazla erkek ödülü kazanırken kadınlarda ise bu rakam sadece dokuz kişidir.(McGrayne (\protect\hyperlink{ref-mcgrayne1993nobel}{1993})) Diğer taraftan ekonomi kategorisinde ödül alan bilimadamlarının çoğunun gelişmiş ülkelerden olduğu görülmektedir. (Özateşler vd. (\protect\hyperlink{ref-ozatecsler1998nobel}{1998}))
+Ödülü kazananların yaş ortalamaları da dikkat çekicidir, Stephan ve Levin (\protect\hyperlink{ref-stephan1993age}{1993})'e göre 1901--1992 döneminde Nobel ödülü kazananlar için yaş ve üretkenlik arasındaki ilişki analiz edildiğinde, kazanan kişiler için genç yaşta daha çok; orta yaşlara doğru azalan; özellikle kimya ve fizikte 50 yaşından sonra aniden düştüğü gözlemlenmiştir. Ülkerler bazında bir inceleme yapıldığında Dünya nüfusunun beşte birini oluşturan Çin'in Nobel kazanmadığı görülmüştür. (Cao (\protect\hyperlink{ref-cao2004chinese}{2004}))
+Farklı bir başlık olarak Nobel Ödülü kazananların çalışmalarını hangi kurumda yaptıklarıdır. (Schlagberger vd. (\protect\hyperlink{ref-schlagberger2016institutions}{2016})). Yine ekonomi alanında Chan vd. (\protect\hyperlink{ref-chan2018relation}{2018})'e göre Nobel ödülü almadan önceki genç yaştaki tanınırlıkları ve aldığı ödüller bakamından nasıl benzerlikler bulunduğu da ortak noktalar arasındadır.
+
+\hypertarget{veri}{%
+\section{Veri}\label{veri}}
+
+Nobel Ödülü kazanan kişileri kapsayacak şekilde TidyTuesday web sitesinden ``nobel\_prize''
+adlı veri seti çekilmiş olup ödülü kazanan kişilerin doğum tarihi, cinsiyeti, kategorisi, ödül yılı
+gibi değişkenler bulunmaktadır. Ödül, ilk kez 1901 yılında verilmiştir. Veri setimizin kapsamı 2016 yılına kadardır.la
+
+\begin{table}[ht]
+\centering
+\caption{Özet İstatistikler} 
+\label{tab:ozet}
+\begin{tabular}{lccccc}
+  \toprule
+ & Ortalama & Std.Sap & Min & Medyan & Mak \\ 
+  \midrule
+prize\_year & 1970.29 & 32.94 & 1901.00 & 1976.00 & 2016.00 \\ 
+   \bottomrule
+\end{tabular}
+\end{table}
+
+\hypertarget{yuxf6ntem-ve-veri-analizi}{%
+\section{Yöntem ve Veri Analizi}\label{yuxf6ntem-ve-veri-analizi}}
+
+Bİlgili veriyi kullanarak regresyon analizi gerçekleştirdiğimizde her geçen yıl Nobel ödülü alan kadın sayısının 0.1 oranında bir önceki yıla göre artmış olduğunu görmekteyiz.
+
+\begin{verbatim}
+## 
+## Descriptive statistics
+## ===============================================
+##                         Dependent variable:    
+##                     ---------------------------
+##                      `Number of Female Winner` 
+## -----------------------------------------------
+## `Number of Nobels`            0.1***           
+##                               (0.02)           
+##                                                
+## Constant                       -0.1            
+##                                (0.2)           
+##                                                
+## -----------------------------------------------
+## Observations                    113            
+## R2                              0.1            
+## Adjusted R2                     0.1            
+## Residual Std. Error       0.8 (df = 111)       
+## F Statistic            10.1*** (df = 1; 111)   
+## ===============================================
+## Note:               *p<0.1; **p<0.05; ***p<0.01
+\end{verbatim}
+
+Aşağıdaki cinsiyet grafiğini incelediğimize 1901-2016 yılları arasında 893 erkek, 50 kadının Nobel ödülü almıştır.
+Diğer grafikleri baktığımızda erkekler yıllar içerisinde görece istikrarlı bir şekilde Nobel ödülü almaya devam etmiştir. Kadınlarda ise durum 1901- 1925 yılları arasında sadece 4 kişi ile sınırlı iken 2000-2016 yılları arasında bu rakam 5 katlık bir artış sonucu 20 olmuştur..
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gr2}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{final1_files/figure-latex/unnamed-chunk-6-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gr4}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{final1_files/figure-latex/unnamed-chunk-7-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gr3}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{final1_files/figure-latex/unnamed-chunk-8-1.pdf}
+
+\hypertarget{sonuuxe7}{%
+\section{Sonuç}\label{sonuuxe7}}
+
+Bu bölümde çalışmanızın sonuçlarını özetleyiniz. Sonuçlarınızın başlangıçta belirlediğiniz araştırma sorusuna ne derece cevap verdiğini ve ileride bu çalışmanın nasıl geliştirilebileceğini tartışınız.
+
+\textbf{Kaynakça bölümü Rmarkdown tarafından otomatik olarak oluşturulmaktadır. Taslak dosyada Kaynakça kısmında herhangi bir değişikliğe gerek yoktur.}
+
+\textbf{\emph{Taslakta bu cümleden sonra yer alan hiçbir şey silinmemelidir.}}
+
+\newpage
+
+\hypertarget{references}{%
+\section{Kaynakça}\label{references}}
+
+\hypertarget{refs}{}
+\leavevmode\hypertarget{ref-cao2004chinese}{}%
+Cao, C. (2004). Chinese science and the ``Nobel Prize complex''. \emph{Minerva}, \emph{42}(2), 151-172.
+
+\leavevmode\hypertarget{ref-chan2018relation}{}%
+Chan, H. F., Mixon, F. G. ve Torgler, B. (2018). Relation of early career performance and recognition to the probability of winning the Nobel Prize in economics. \emph{Scientometrics}, \emph{114}(3), 1069-1086.
+
+\leavevmode\hypertarget{ref-mcgrayne1993nobel}{}%
+McGrayne, S. B. (1993). \emph{Nobel Prize women in science: Their lives, struggles, and momentous discoveries}. Birch Lane Press.
+
+\leavevmode\hypertarget{ref-ozatecsler1998nobel}{}%
+Özateşler, M., GÖKALP, F. ve BAŞER, S. (1998). Nobel Ekonomi Ödülü Alan Ekonomistler ve Azgelişmiş Ülkeler. \emph{Dokuz Eylül Üniversitesi İktisadi İdari Bilimler Fakültesi Dergisi}, \emph{13}(1), 145-162.
+
+\leavevmode\hypertarget{ref-schlagberger2016institutions}{}%
+Schlagberger, E. M., Bornmann, L. ve Bauer, J. (2016). At what institutions did Nobel laureates do their prize-winning work? An analysis of biographical information on Nobel laureates from 1994 to 2014. \emph{Scientometrics}, \emph{109}(2), 723-767.
+
+\leavevmode\hypertarget{ref-stephan1993age}{}%
+Stephan, P. ve Levin, S. (1993). Age and the Nobel Prize revisited. \emph{Scientometrics}, \emph{28}(3), 387-399.
+
+\end{document}
